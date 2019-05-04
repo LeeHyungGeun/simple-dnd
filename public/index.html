@@ -26,10 +26,13 @@
         .drag-wrap div + div {
           margin-left: 5px;
         }
-        #div1 {
+        #div1 > div {
           height: 55px;
           width: 50px;
           background: blue;
+        }
+        #div1 > div + div {
+          margin: 0;
         }
         #div2 {
           height: 55px;
@@ -53,8 +56,15 @@
     <div id="root"></div>
     <div id="dnd">
       <div class="drag-wrap">
-        <div id="div1" bag="first-bag" draggable="true"></div>
-        <div id="div2" bag="first-bag" draggable="true"></div>
+        <div id="div1" bag="first-bag">
+          <div>KEN1</div>
+          <div>KEN2</div>
+          <div>KEN3</div>
+          <div>KEN4</div>
+          <div>KEN5</div>
+          <div>KEN6</div>
+        </div>
+        <!-- <div id="div2" bag="first-bag" draggable="true"></div> -->
       </div>
       <hr>
       <div class="drop" bag="first-bag"></div>

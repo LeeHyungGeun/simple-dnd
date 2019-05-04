@@ -21,22 +21,31 @@ class Dnd {
       return;
     }
 
+    $bags.forEach($b => Array.from($b.children).forEach($bc => $bc.setAttribute('draggable', true)));
     $bags.forEach($b => $b.addEventListener('dragstart', this.dragstart.bind(this)));
     $bags.forEach($b => $b.addEventListener('dragover', this.dragover.bind(this)));
     $bags.forEach($b => $b.addEventListener('drop', this.drop.bind(this)));
   }
 
-  dragstart() {
+  dragstart(e) {
     console.log('Start');
+    // this.$currentElement = e.currentTarget;
+    this.$currentElement = e.target;
   }
 
   dragover(e) {
     e.preventDefault();
   }
 
-  drop() {
+  drop(e) {
     console.log('Drop');
-    this.options.drop({ name: 'my data' });
+    this.$targetElement = e.currentTarget;
+    this.options.drop({ name: 'my data', elm: this.$currentElement, target: this.$targetElement });
+    const $copyElm = this.options.copy ? this.$currentElement.cloneNode(true) : this.$currentElement;
+    console.log(this.$currentElement)
+    this.$targetElement.appendChild($copyElm);
+    // console.log(this.$targetElement)
+    this.$currentElement = null;
   }
 
 }
